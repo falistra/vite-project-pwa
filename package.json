@@ -19,6 +19,7 @@
     "sharp-ico": "^0.1.5"
   },
   "dependencies": {
-    "@netlify/vite-plugin": "^2.7.14"
+    "@netlify/vite-plugin": "^2.7.14",
+    "juris": "^0.9.0"
   }
 }
