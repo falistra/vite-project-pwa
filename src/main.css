@@ -1,0 +1,16 @@
+.altra-domanda {
+  display: flex;
+  place-items: center;
+  margin: 20px auto;
+  text-align: center;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 1rem;
+  font-family: "Arial", sans-serif;
+  font-weight: 600;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: auto;
+}

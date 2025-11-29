@@ -1,17 +1,48 @@
-// import './style.css'
+import './main.css'
 import { initPWA } from './pwa.js'
 import { Juris } from 'juris'
 
-import { getDomanda } from './domande.js';
-const domanda = await getDomanda();
-console.log(domanda);
+import { getDomanda, numeroDomande } from './domande.js';
+const domanda = await getDomanda(0); // get the first question at start-up
 import { domandeSceltaSingola } from './componenti/domandaSceltaSingola.js';
 
 const juris = new Juris({
-  components: {
-    domandeSceltaSingola
+  states: {
+    rispostaSelezionata: null,
+    domandaCorrente: domanda,
+    indiceDomanda: null
   },
-  layout: { domandeSceltaSingola: { domanda} }
+  services: {
+    getDomanda() {
+      const indiceDomanda = juris.getState('indiceDomanda',0) ;
+      juris.setState('indiceDomanda', (indiceDomanda + 1) % numeroDomande);
+      return getDomanda(juris.getState('indiceDomanda'));
+    } 
+  },
+
+  components: {
+    domandeSceltaSingola,
+    altraDomanda: (props, { setState, services }) => ({
+      button: {
+        className: 'altra-domanda',
+        text: 'Altra domanda',
+        onClick: async () => {
+          const nuovaDomanda = await services.getDomanda();
+          setState('rispostaSelezionata', null);
+          setState('domandaCorrente', nuovaDomanda);
+        }
+      }
+    })
+  },
+  layout: {
+    div: {
+      children: () => [{
+        domandeSceltaSingola: { domanda }
+      }, {
+        altraDomanda: {}
+      }]
+    }
+  }
 });
 juris.render('#app');
 
