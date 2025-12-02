@@ -26,7 +26,7 @@
   gap: 10px;
 }
 
-.domanda-scelta-singola .scelta {
+.scelta {
   background: transparent;
   border: 2px dashed #ccc;
   color: #666;

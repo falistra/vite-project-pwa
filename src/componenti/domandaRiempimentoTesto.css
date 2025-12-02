@@ -46,15 +46,4 @@
   border-bottom: 2px solid #000;
   font-weight: bold;
 }
-.corretta {
-  color: green;
-  background-color: palegreen;
-  border-color: green;
-  font-weight: bold;
-}
-.errata {
-  color: red;
-  background-color: #f8d7da;
-  border-color: red;
-  font-weight: bold;
-}
+
