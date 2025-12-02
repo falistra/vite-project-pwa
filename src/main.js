@@ -4,9 +4,19 @@ import { Juris } from 'juris'
 
 import { getDomanda, numeroDomande } from './domande.js';
 const domanda = await getDomanda(0); // get the first question at start-up
-import { domandeSceltaSingola } from './componenti/domandaSceltaSingola.js';
+import { domandaSceltaSingola } from './componenti/domandaSceltaSingola.js';
+import { domandaRiempimentoTesto, enhanceRT } from './componenti/domandaRiempimentoTesto.js';
+import   { DOMEnhancer }  from 'juris/juris-enhance';
 
+import xml2js from 'xml2js';
 const juris = new Juris({
+//  features: { enhance: DOMEnhancer },
+//  features: {
+//        cssExtractor: CSSExtractor,
+//    enhance: DOMEnhancer,
+//        headless: HeadlessManager,
+//        template: TemplateCompiler
+//  },
   states: {
     rispostaSelezionata: null,
     domandaCorrente: domanda,
@@ -14,14 +24,40 @@ const juris = new Juris({
   },
   services: {
     getDomanda() {
-      const indiceDomanda = juris.getState('indiceDomanda',0) ;
+      const indiceDomanda = juris.getState('indiceDomanda', 0);
       juris.setState('indiceDomanda', (indiceDomanda + 1) % numeroDomande);
       return getDomanda(juris.getState('indiceDomanda'));
-    } 
+    }
   },
 
   components: {
-    domandeSceltaSingola,
+    domandaSceltaSingola,
+    domandaRiempimentoTesto,
+    Domanda: (props, { getState }) => {
+      return {
+        render: () => {
+          const domandaCorrente = getState('domandaCorrente');
+          if ('domandasceltasingola' in domandaCorrente) {
+            return {
+              domandaSceltaSingola: {}
+            }
+          }
+          else if ('domandariempimentotesto' in domandaCorrente) {
+            return {
+              domandaRiempimentoTesto: {}
+            }
+          }
+          else {
+            return {
+              div: {
+                text: 'Tipo di domanda non supportato.'
+              }
+            }
+          }
+        }
+      }
+    },
+
     altraDomanda: (props, { setState, services }) => ({
       button: {
         className: 'altra-domanda',
@@ -37,7 +73,8 @@ const juris = new Juris({
   layout: {
     div: {
       children: () => [{
-        domandeSceltaSingola: { domanda }
+        Domanda: {}
+        //domandeSceltaSingola: { domanda }
       }, {
         altraDomanda: {}
       }]
@@ -45,7 +82,7 @@ const juris = new Juris({
   }
 });
 juris.render('#app');
-
+enhanceRT(juris);
 
 const app = document.querySelector('#app')
 initPWA(app)

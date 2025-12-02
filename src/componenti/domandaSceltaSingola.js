@@ -1,6 +1,6 @@
 import './domandaSceltaSingola.css';
 //import { sanitizeHTML } from '../common.js';
-export const domandeSceltaSingola = (props, context) => {
+export const domandaSceltaSingola = (props, context) => {
   const { getState, setState } = context;
   return {
     render: () => ({
@@ -10,13 +10,13 @@ export const domandeSceltaSingola = (props, context) => {
           {
             div: {
               className: 'prologo',
-              innerHTML: () => getState('domandaCorrente').prologo
+              innerHTML: () => getState('domandaCorrente').domandasceltasingola.prologo
             }
           },
           {
             div: {
               className: 'testo',
-              innerHTML: () => getState('domandaCorrente').testo.replace(/_+/g, '<span id="risposta" class="blank-underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>')
+              innerHTML: () => getState('domandaCorrente').domandasceltasingola.testo.replace(/_+/g, '<span id="risposta" class="blank-underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>')
             }
           },
           {
@@ -25,7 +25,7 @@ export const domandeSceltaSingola = (props, context) => {
               children: () => { 
                 const domanda = getState('domandaCorrente');
                 return [
-                ...domanda.risposte.risposta.map((scelta, index) =>
+                ...domanda.domandasceltasingola.risposte.risposta.map((scelta, index) =>
                 ({
                   button: {
                     className: () => {

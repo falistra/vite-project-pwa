@@ -1,6 +1,20 @@
 import xml2js from 'xml2js';
 
 const domandeXML = [
+  `<domandariempimentotesto>
+  <prologo>Drag and drop the correct option into each gap.</prologo>
+  <testo>Traditional working men's clubs are ____1_____ across their South Wales Valleys stronghold. The private social clubs were first created in the 19th century ____2_____ industrial communities, providing recreation and education for working class men and their families.&lt;br&gt;&lt;br&gt;Clubs have commonly been affiliated with a ____3_____ industry, like the miners' institute, with the armed forces, like the Royal British Legion, or with political parties. But in England and Wales, the number of club certificates ñ licences granted by local authorities ñ has dropped 15% since 2008.&lt;br&gt;&lt;br&gt;Blaenau Gwent still had 43 members clubs holding club premises certificates in March 2016 - one of the highest rates ____4_____ head in England and Wales.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Adapted from The Western Mail, 10 November 2016</testo>
+  <risposte>
+    <risposta ordine="">inside</risposta>
+    <risposta ordine="">pro</risposta>
+    <risposta ordine="">special</risposta>
+    <risposta ordine="1">declining</risposta>
+    <risposta ordine="4">per</risposta>
+    <risposta ordine="2">within</risposta>
+    <risposta ordine="">reducing</risposta>
+    <risposta ordine="3">particular</risposta>
+  </risposte>
+</domandariempimentotesto>`,
     `<domandasceltasingola>
   <prologo>&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Scegli la forma per completare la frase.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;</prologo>
   <testo>The _____&amp;nbsp;date is indicated on each individual packet.</testo>
@@ -77,6 +91,41 @@ const domandeXML = [
 </domandasceltasingola>`
 ]
 
+const domandeRT = [
+  `
+  <domandariempimentotesto>
+  <prologo>Drag and drop the correct option into each gap.</prologo>
+  <testo>Traditional working men's clubs are ____1_____ across their South Wales Valleys stronghold. The private social clubs were first created in the 19th century ____2_____ industrial communities, providing recreation and education for working class men and their families.&lt;br&gt;&lt;br&gt;Clubs have commonly been affiliated with a ____3_____ industry, like the miners' institute, with the armed forces, like the Royal British Legion, or with political parties. But in England and Wales, the number of club certificates ñ licences granted by local authorities ñ has dropped 15% since 2008.&lt;br&gt;&lt;br&gt;Blaenau Gwent still had 43 members clubs holding club premises certificates in March 2016 - one of the highest rates ____4_____ head in England and Wales.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Adapted from The Western Mail, 10 November 2016</testo>
+  <risposte>
+    <risposta ordine="">inside</risposta>
+    <risposta ordine="">pro</risposta>
+    <risposta ordine="">special</risposta>
+    <risposta ordine="1">declining</risposta>
+    <risposta ordine="4">per</risposta>
+    <risposta ordine="2">within</risposta>
+    <risposta ordine="">reducing</risposta>
+    <risposta ordine="3">particular</risposta>
+  </risposte>
+</domandariempimentotesto>`,
+`<domandariempimentotesto>
+  <prologo>Drag and drop the correct option into each gap.</prologo>
+  <testo>Voters in Costa Mesa and Laguna Beach were poised to reject ballot measures Wednesday ____1_____ would have allowed medical marijuana businesses to set up ____2_____ in the two cities.&lt;br&gt;&lt;br&gt;Meanwhile, a separate measure that would allow manufacturing of medical marijuana products in Costa Mesa had a ____3_____ lead, according to county registrar data from Tuesday's election that was posted Wednesday evening.&lt;br&gt;&lt;br&gt;The City Council sponsored that item, Measure X, to allow businesses that research, test, process and manufacture medical marijuana products to open in an area north of South Coast Drive and west of Harbor Boulevard - ____4_____ they obtain permits from the city.&lt;br&gt;&lt;br&gt;&lt;br&gt;Adapted from The Los Angeles Times, 09 November 2016</testo>
+  <risposte>
+    <risposta ordine="2">shop</risposta>
+    <risposta ordine="">given</risposta>
+    <risposta ordine="">little</risposta>
+    <risposta ordine="1">that</risposta>
+    <risposta ordine="">selling</risposta>
+    <risposta ordine="4">provided</risposta>
+    <risposta ordine="">what</risposta>
+    <risposta ordine="3">narrow</risposta>
+  </risposte>
+</domandariempimentotesto>`
+]
+
+
+
+
 const parser = new xml2js.Parser({ explicitArray: false, trim: true});
 
 export const numeroDomande = domandeXML.length;
@@ -88,7 +137,7 @@ export const getDomanda = async (indiceDomanda) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(result.domandasceltasingola);
+                resolve(result);
             }
         });
     });
