@@ -15,10 +15,16 @@
   font-family: "Arial Italic", sans-serif;
 }
 .domanda-riempimento-testo .testo {
-  font-size: 0.8rem;
-  margin-bottom: 20px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 5px;
   color: #222;
   font-family: "Arial", sans-serif;
+  line-height: 1.2; 
+  overflow-y: auto;
+  height: 200px;
+  text-overflow: ellipsis;
 }
 .scelte {
   display: flex;
@@ -37,13 +43,43 @@
   font-size: 0.9rem;
   width: auto;
 }
+
+.domanda-riempimento-testo .scelta.selezionata {
+  border-color: #2196F3;
+  background-color: #E3F2FD;
+  color: #0D47A1;
+}
+
+.domanda-riempimento-testo .scelta:disabled  {
+  border-color: #b3b0b0;
+  background-color: #c7c4c4;
+  color: #262525;
+  cursor: not-allowed;
+}
+
 /* .scelta:hover {
     border-color: #888;
     color: #333;
     background-color: #f0f0f0;
 } */
+
 .domanda-riempimento-testo .blank-underline {
   border-bottom: 2px solid #000;
   font-weight: bold;
 }
 
+.domanda-riempimento-testo .corretta {
+  border-color: #4CAF50;
+  background-color: #DFF2DF;
+  color: #2E7D32;
+}
+
+.domanda-riempimento-testo .errata {
+  border-color: #F44336;
+  background-color: #FDECEA;
+  color: #C62828;
+}  
+ 
+.domanda-riempimento-testo .scelta:active {
+  cursor: grabbing;
+}

@@ -1,16 +1,15 @@
 import './main.css'
 import { initPWA } from './pwa.js'
-import { Juris } from 'juris'
+import { Juris } from 'juris/juris';
 
 import { getDomanda, numeroDomande } from './domande.js';
 const domanda = await getDomanda(0); // get the first question at start-up
 import { domandaSceltaSingola } from './componenti/domandaSceltaSingola.js';
 import { domandaRiempimentoTesto, enhanceRT } from './componenti/domandaRiempimentoTesto.js';
-import   { DOMEnhancer }  from 'juris/juris-enhance';
+
 
 import xml2js from 'xml2js';
 const juris = new Juris({
-//  features: { enhance: DOMEnhancer },
 //  features: {
 //        cssExtractor: CSSExtractor,
 //    enhance: DOMEnhancer,
@@ -82,7 +81,7 @@ const juris = new Juris({
   }
 });
 juris.render('#app');
-enhanceRT(juris);
+
 
 const app = document.querySelector('#app')
 initPWA(app)

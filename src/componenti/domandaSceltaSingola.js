@@ -1,5 +1,4 @@
 import './domandaSceltaSingola.css';
-//import { sanitizeHTML } from '../common.js';
 export const domandaSceltaSingola = (props, context) => {
   const { getState, setState } = context;
   return {
