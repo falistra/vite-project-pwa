@@ -1,25 +1,21 @@
 import './main.css'
 import { initPWA } from './pwa.js'
+import { DOMEnhancer } from 'juris/juris-enhance';
 import { Juris } from 'juris/juris';
 
 import { getDomanda, numeroDomande } from './domande.js';
 const domanda = await getDomanda(0); // get the first question at start-up
 import { domandaSceltaSingola } from './componenti/domandaSceltaSingola.js';
-import { domandaRiempimentoTesto, enhanceRT } from './componenti/domandaRiempimentoTesto.js';
+import { domandaRiempimentoTesto } from './componenti/domandaRiempimentoTesto.js';
 
 
 import xml2js from 'xml2js';
 const juris = new Juris({
-//  features: {
-//        cssExtractor: CSSExtractor,
-//    enhance: DOMEnhancer,
-//        headless: HeadlessManager,
-//        template: TemplateCompiler
-//  },
+ features : { enhance : DOMEnhancer },
   states: {
     rispostaSelezionata: null,
     domandaCorrente: domanda,
-    indiceDomanda: null
+    indiceDomanda: 0
   },
   services: {
     getDomanda() {
@@ -63,7 +59,6 @@ const juris = new Juris({
         text: 'Altra domanda',
         onClick: async () => {
           const nuovaDomanda = await services.getDomanda();
-          setState('rispostaSelezionata', null);
           setState('domandaCorrente', nuovaDomanda);
         }
       }
@@ -73,7 +68,6 @@ const juris = new Juris({
     div: {
       children: () => [{
         Domanda: {}
-        //domandeSceltaSingola: { domanda }
       }, {
         altraDomanda: {}
       }]
